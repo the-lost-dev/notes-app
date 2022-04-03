@@ -13,14 +13,24 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+
+  ### STATE MANAGEMENT
   flutter_riverpod: ^1.0.3
+
+  ### FONTS
   google_fonts: ^2.3.1
+  
+  ### LOCAL STORAGE
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^1.0.0
+  build_runner: ^2.1.8
+  hive_generator: ^1.1.2
 
 flutter:
 

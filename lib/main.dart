@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notes_app/entities/note.dart';
 
 import 'root.dart';
 
-void main() => runApp(
-      const ProviderScope(
-        child: NotesApp(),
-      ),
-    );
+Future<void> main() async {
+  /// initializes the hive local storage
+  await Hive.initFlutter();
+
+  /// registering the hive type adapter
+  Hive.registerAdapter(NoteAdapter());
+  runApp(const ProviderScope(child: NotesApp()));
+}
 
 ///  APP FEATURES 
 /// Create Notes : Create Notes that store locally to device.
