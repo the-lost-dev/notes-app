@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_app/app_colors.dart';
+import 'package:notes_app/presentation/note_text_area.dart';
+import 'package:notes_app/utils/utils.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: AppColors.utilityColor,
       floatingActionButton: FloatingActionButton(
@@ -17,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
       ),
       body: const SafeArea(
         child: Center(
-          child: Text('data'),
+          child: NoteTextArea(),
         ),
       ),
     );
