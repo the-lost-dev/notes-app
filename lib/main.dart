@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/entities/note.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'root.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final appDocumentDir = await getApplicationDocumentsDirectory();
+
   /// initializes the hive local storage
-  await Hive.initFlutter();
+  await Hive.initFlutter(appDocumentDir.path);
 
   /// registering the hive type adapter
   Hive.registerAdapter(NoteAdapter());

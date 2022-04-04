@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes_app/app_colors.dart';
+import 'package:notes_app/utils/app_colors.dart';
 import 'package:notes_app/presentation/note_text_area.dart';
 import 'package:notes_app/utils/utils.dart';
 
