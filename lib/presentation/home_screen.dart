@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes_app/utils/app_colors.dart';
 import 'package:notes_app/presentation/note_text_area.dart';
 import 'package:notes_app/utils/utils.dart';
 
@@ -16,13 +15,13 @@ class HomeScreen extends ConsumerWidget {
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.utilityColor,
         child: const Icon(Icons.add),
-        onPressed: () {},
-      ),
-      body: const SafeArea(
-        child: Center(
-          child: NoteTextArea(),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const CreateNoteScreen(),
+          ),
         ),
       ),
+      body: SafeArea(child: Container()),
     );
   }
 }

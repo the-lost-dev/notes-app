@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/entities/note.dart';
+import 'package:notes_app/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'root.dart';
@@ -16,6 +17,11 @@ Future<void> main() async {
 
   /// registering the hive type adapter
   Hive.registerAdapter(NoteAdapter());
+
+  /// create a database 
+  await Hive.openBox<Note>(noteBox);
+  await Hive.openBox<Note>(deletedNotes);
+
   runApp(const ProviderScope(child: NotesApp()));
 }
 

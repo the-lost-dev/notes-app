@@ -7,17 +7,17 @@ part 'note.g.dart';
 @HiveType(typeId: 0)
 class Note {
   const Note({
-    required this.heading,
-    required this.dateTime,
-    required this.content,
+    this.heading,
+    this.content,
+    this.dateTime,
   });
 
   @HiveField(0)
-  final String heading;
+  final String? heading;
 
   @HiveField(1)
-  final DateTime dateTime;
+  final DateTime? dateTime;
 
   @HiveField(2)
-  final String content;
+  final String? content;
 }
