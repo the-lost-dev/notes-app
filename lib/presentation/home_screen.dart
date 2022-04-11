@@ -12,8 +12,8 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppColors.utilityColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryColor,
-        foregroundColor: AppColors.utilityColor,
+        // backgroundColor: AppColors.primaryColor,
+        // foregroundColor: AppColors.utilityColor,
         child: const Icon(Icons.add),
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
