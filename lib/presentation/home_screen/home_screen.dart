@@ -15,19 +15,15 @@ class HomeScreen extends ConsumerWidget {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: AppColors.utilityColor,
+      body: const Body(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.fabBgColor,
         foregroundColor: AppColors.utilityColor,
         tooltip: Strings.tooltipText,
         elevation: fabElevation,
         child: const Icon(Icons.add),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const CreateNoteScreen(),
-          ),
+        onPressed: () => Navigator.of(context).pushNamed(CreateNoteScreen.route),
         ),
-      ),
-      body: const Body(),
-    );
+      );
   }
 }
