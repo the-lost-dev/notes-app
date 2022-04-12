@@ -7,4 +7,5 @@ class AppColors {
   static const splashColor = Color(0xFFDFDFDE);
   static const iconColor = Color(0xFF1F1F1F);
   static const textColor = Color(0xFF1F1F1F);
+  static const fabBgColor = Color(0xFF584236);
 }

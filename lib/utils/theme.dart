@@ -13,6 +13,10 @@ class NotesAppTheme {
     bodyText1: GoogleFonts.roboto(
       fontSize: 18,
     ),
+    bodyText2: GoogleFonts.roboto(
+      color: const Color(0xFF6C757D),
+      fontSize: 22,
+    ),
   );
 
   static ThemeData lightTheme() {

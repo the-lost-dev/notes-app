@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
-part 'note.g.dart';
+part 'note_model.g.dart';
 
 @immutable
 @HiveType(typeId: 0)
-class Note {
-  const Note({
+class NoteModel{
+  const NoteModel({
     this.heading,
     this.content,
     this.dateTime,

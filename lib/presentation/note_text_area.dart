@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notes_app/entities/note.dart';
-import 'package:notes_app/presentation/home_screen.dart';
+import 'package:notes_app/entities/note_model.dart';
+import 'package:notes_app/presentation/home_screen/home_screen.dart';
 import 'package:notes_app/utils/utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -14,13 +14,15 @@ import 'components/components.dart';
 class CreateNoteScreen extends ConsumerStatefulWidget {
   const CreateNoteScreen({Key? key}) : super(key: key);
 
+  static const route = 'newNoteRoute';
+
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _CreateNoteScreenState();
 }
 
 class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
-  Box<Note>? storeData;
+  Box<NoteModel>? storeData;
 
   bool? _isNotEmpty;
 
@@ -30,7 +32,7 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
   @override
   void initState() {
     super.initState();
-    storeData = Hive.box<Note>(noteBox);
+    storeData = Hive.box<NoteModel>(Strings.noteBox);
   }
 
   @override
@@ -46,7 +48,7 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
         _noteTitleController.text.isNotEmpty) {
       final String noteTitle = _noteTitleController.text;
       final String noteContent = _noteContentController.text;
-      Note note = Note(
+      NoteModel note = NoteModel(
         heading: noteTitle,
         content: noteContent,
         dateTime: DateTime.now(),
@@ -94,25 +96,25 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
                   onPressed: checkIfNoteIsNotEmpty,
                 )
               : null,
-              actions: [
-                CustomIconButton(
-                icon: const Icon(PhosphorIcons.arrowLeftBold),
-                onPressed: () {},
-              ),
-              const Spacer(),
-              CustomIconButton(
-                icon: const Icon(PhosphorIcons.pushPinSimpleBold),
-                onPressed: () {},
-              ),
-              CustomIconButton(
-                icon: const Icon(PhosphorIcons.bookmarkSimpleBold),
-                onPressed: () {},
-              ),
-              CustomIconButton(
-                icon: const Icon(PhosphorIcons.archiveBoxBold),
-                onPressed: () {},
-              )
-              ],
+          actions: [
+            CustomIconButton(
+              icon: const Icon(PhosphorIcons.arrowLeftBold),
+              onPressed: () {},
+            ),
+            const Spacer(),
+            CustomIconButton(
+              icon: const Icon(PhosphorIcons.pushPinSimpleBold),
+              onPressed: () {},
+            ),
+            CustomIconButton(
+              icon: const Icon(PhosphorIcons.bookmarkSimpleBold),
+              onPressed: () {},
+            ),
+            CustomIconButton(
+              icon: const Icon(PhosphorIcons.archiveBoxBold),
+              onPressed: () {},
+            )
+          ],
         ),
       ),
     );

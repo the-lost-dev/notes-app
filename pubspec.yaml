@@ -28,6 +28,9 @@ dependencies:
   ### OS specific directory paths
   path_provider: ^2.0.9
 
+  ## SVG IMAGE/ Icons
+  flutter_svg: ^1.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,5 +43,5 @@ flutter:
 
   uses-material-design: true
 
-  # assets:
-  #   - images/
+  assets:
+    - images/
