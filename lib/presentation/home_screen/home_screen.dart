@@ -14,11 +14,11 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: AppColors.utilityColor,
+      backgroundColor: AppColors.primaryColor,
       body: const Body(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.fabBgColor,
-        foregroundColor: AppColors.utilityColor,
+        foregroundColor: AppColors.primaryColor,
         tooltip: Strings.tooltipText,
         elevation: fabElevation,
         child: const Icon(Icons.add),

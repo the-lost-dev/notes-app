@@ -27,6 +27,7 @@ class _BodyState extends ConsumerState<Body> {
     if (storedNotes!.isEmpty) {
       return const EmptyScreen();
     } else {
+      ///TODO: Create a list of stored notes from the DB
       return Container(
         child: Text(
           'Me',

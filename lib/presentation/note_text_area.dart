@@ -53,7 +53,6 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
         content: noteContent,
         dateTime: DateTime.now(),
       );
-      print(DateTime.now());
       await storeData!.add(note);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -61,11 +60,7 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
         ),
       );
       Navigator.of(context).pop();
-      await Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        ),
-      );
+      await Navigator.of(context).pushNamed(HomeScreen.route);
       _isNotEmpty = true;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -74,11 +69,7 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
         ),
       );
       Navigator.of(context).pop();
-      await Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        ),
-      );
+      await Navigator.of(context).pushNamed(HomeScreen.route);
       _isNotEmpty = false;
     }
     return _isNotEmpty!;
@@ -89,7 +80,14 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
     return WillPopScope(
       onWillPop: checkIfNoteIsNotEmpty,
       child: Scaffold(
+        backgroundColor: AppColors.utilityColor,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          backgroundColor: AppColors.utilityColor,
+          elevation: 0,
+          iconTheme: const IconThemeData(
+            color: AppColors.fabBgColor,
+          ),
           leading: Platform.isIOS
               ? CustomIconButton(
                   icon: const Icon(CupertinoIcons.back),
@@ -97,11 +95,6 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
                 )
               : null,
           actions: [
-            CustomIconButton(
-              icon: const Icon(PhosphorIcons.arrowLeftBold),
-              onPressed: () {},
-            ),
-            const Spacer(),
             CustomIconButton(
               icon: const Icon(PhosphorIcons.pushPinSimpleBold),
               onPressed: () {},
@@ -116,82 +109,32 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
             )
           ],
         ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.blockSizeHorizontal * 3,
+          ),
+          child: Column(
+            children: [
+              TextField(
+                keyboardType: TextInputType.multiline,
+                textAlign: TextAlign.left,
+                textInputAction: TextInputAction.done,
+                cursorColor: AppColors.fabBgColor,
+                style: Theme.of(context).textTheme.bodyText1,
+                cursorHeight: 25,
+                cursorWidth: 1,
+                maxLines: null,
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: Strings.hintText,
+                  hintStyle: Theme.of(context).textTheme.bodyText1,
+                  focusedBorder: InputBorder.none,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-
-// class NoteTextArea extends ConsumerWidget {
-//   const NoteTextArea({Key? key}) : super(key: key);
-
-//   void addItem(Note note) async {
-//     var box = await Hive.openBox<Note>('note');
-//     box.add(note);
-//   }
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return Padding(
-//       padding: EdgeInsets.symmetric(
-//         horizontal: SizeConfig.blockSizeHorizontal * 3,
-//         vertical: SizeConfig.blockSizeVertical * 1.5,
-//       ),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             children: [
-//               CustomIconButton(
-//                 icon: const Icon(PhosphorIcons.arrowLeftBold),
-//                 onPressed: () {},
-//               ),
-//               const Spacer(),
-//               CustomIconButton(
-//                 icon: const Icon(PhosphorIcons.pushPinSimpleBold),
-//                 onPressed: () {},
-//               ),
-//               CustomIconButton(
-//                 icon: const Icon(PhosphorIcons.bookmarkSimpleBold),
-//                 onPressed: () {},
-//               ),
-//               CustomIconButton(
-//                 icon: const Icon(PhosphorIcons.archiveBoxBold),
-//                 onPressed: () {},
-//               )
-//             ],
-//           ),
-//           SizedBox(
-//             height: SizeConfig.blockSizeVertical * 3,
-//           ),
-//           Text(
-//             'Title',
-//             style: Theme.of(context).textTheme.headline1,
-//           ),
-//           SizedBox(
-//             height: SizeConfig.blockSizeVertical * 1.5,
-//           ),
-//           Expanded(
-//             flex: 2,
-//             child: TextField(
-//               keyboardType: TextInputType.multiline,
-//               textAlign: TextAlign.left,
-//               textInputAction: TextInputAction.done,
-//               cursorColor: Colors.white,
-//               style: Theme.of(context).textTheme.bodyText1,
-//               cursorHeight: 25,
-//               cursorWidth: 1,
-//               maxLines: null,
-//               autofocus: true,
-//               decoration: InputDecoration(
-//                 hintText: Strings.hintText,
-//                 hintStyle: Theme.of(context).textTheme.bodyText1,
-//                 focusedBorder: InputBorder.none,
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
