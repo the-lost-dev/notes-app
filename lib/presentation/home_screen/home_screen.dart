@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes_app/presentation/note_text_area.dart';
+import 'package:notes_app/presentation/new_note_screen/new_note_screen.dart';
 import 'package:notes_app/utils/utils.dart';
 
 import 'components/body.dart';
@@ -22,7 +22,7 @@ class HomeScreen extends ConsumerWidget {
         tooltip: Strings.tooltipText,
         elevation: fabElevation,
         child: const Icon(Icons.add),
-        onPressed: () => Navigator.of(context).pushNamed(CreateNoteScreen.route),
+        onPressed: () => Navigator.of(context).pushNamed(NewNoteScreen.route),
         ),
       );
   }

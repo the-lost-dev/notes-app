@@ -10,6 +10,11 @@ class NotesAppTheme {
       fontWeight: FontWeight.bold,
       color: AppColors.textColor,
     ),
+    headline2: GoogleFonts.roboto(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.textColor,
+    ),
     bodyText1: GoogleFonts.roboto(
       fontSize: 18,
     ),

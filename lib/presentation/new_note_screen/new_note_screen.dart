@@ -9,19 +9,19 @@ import 'package:notes_app/presentation/home_screen/home_screen.dart';
 import 'package:notes_app/utils/utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-import 'components/components.dart';
+import '../components/components.dart';
 
-class CreateNoteScreen extends ConsumerStatefulWidget {
-  const CreateNoteScreen({Key? key}) : super(key: key);
+class NewNoteScreen extends ConsumerStatefulWidget {
+  const NewNoteScreen({Key? key}) : super(key: key);
 
   static const route = 'newNoteRoute';
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CreateNoteScreenState();
+      _NewNoteScreenState();
 }
 
-class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
+class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
   Box<NoteModel>? storeData;
 
   bool? _isNotEmpty;
@@ -109,29 +109,55 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
             )
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.blockSizeHorizontal * 3,
-          ),
-          child: Column(
-            children: [
-              TextField(
-                keyboardType: TextInputType.multiline,
-                textAlign: TextAlign.left,
-                textInputAction: TextInputAction.done,
-                cursorColor: AppColors.fabBgColor,
-                style: Theme.of(context).textTheme.bodyText1,
-                cursorHeight: 25,
-                cursorWidth: 1,
-                maxLines: null,
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: Strings.hintText,
-                  hintStyle: Theme.of(context).textTheme.bodyText1,
-                  focusedBorder: InputBorder.none,
+        body: SingleChildScrollView(
+          primary: true,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: SizeConfig.blockSizeHorizontal * 3,
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: SizeConfig.blockSizeVertical * 3,
                 ),
-              ),
-            ],
+                TextField(
+                  controller: _noteTitleController,
+                  keyboardType: TextInputType.multiline,
+                  textAlign: TextAlign.left,
+                  textInputAction: TextInputAction.next,
+                  cursorColor: AppColors.fabBgColor,
+                  style: Theme.of(context).textTheme.headline2,
+                  cursorHeight: 30,
+                  cursorWidth: 1,
+                  decoration: InputDecoration(
+                    hintText: Strings.titleHintText,
+                    hintStyle: Theme.of(context).textTheme.headline2,
+                    focusedBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                  ),
+                ),
+                TextField(
+                  controller: _noteContentController,
+                  keyboardType: TextInputType.multiline,
+                  textAlign: TextAlign.left,
+                  textInputAction: TextInputAction.done,
+                  cursorColor: AppColors.fabBgColor,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  cursorHeight: 25,
+                  cursorWidth: 1,
+                  maxLines: null,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: Strings.noteHintText,
+                    hintStyle: Theme.of(context).textTheme.bodyText1,
+                    focusedBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
