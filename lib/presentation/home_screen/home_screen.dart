@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_app/presentation/new_note_screen/new_note_screen.dart';
 import 'package:notes_app/utils/utils.dart';
 
-import 'components/body.dart';
+import 'home_components/body.dart';
+
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);

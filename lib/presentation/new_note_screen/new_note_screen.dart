@@ -6,10 +6,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/entities/note_model.dart';
 import 'package:notes_app/presentation/home_screen/home_screen.dart';
+import 'package:notes_app/services/database.dart';
 import 'package:notes_app/utils/utils.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../components/components.dart';
+
+final noteTitleProvider = StateProvider<String?>((ref) => null);
+
+final noteContentProvider = StateProvider<String?>((ref) => null);
 
 class NewNoteScreen extends ConsumerStatefulWidget {
   const NewNoteScreen({Key? key}) : super(key: key);
@@ -17,8 +22,7 @@ class NewNoteScreen extends ConsumerStatefulWidget {
   static const route = 'newNoteRoute';
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _NewNoteScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _NewNoteScreenState();
 }
 
 class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
@@ -48,16 +52,14 @@ class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
         _noteTitleController.text.isNotEmpty) {
       final String noteTitle = _noteTitleController.text;
       final String noteContent = _noteContentController.text;
-      NoteModel note = NoteModel(
-        heading: noteTitle,
-        content: noteContent,
-        dateTime: DateTime.now(),
+      await HiveDatabaseService().createNewNote(
+        noteTitle: noteTitle,
+        noteContent: noteContent,
       );
-      await storeData!.add(note);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Note Saved'),
-        ),
+      const SnackBar(
+        content: Text('Note Saved'),
+      ),  
       );
       Navigator.of(context).pop();
       await Navigator.of(context).pushNamed(HomeScreen.route);
@@ -77,6 +79,7 @@ class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final newNote = ref.watch(noteContentProvider);
     return WillPopScope(
       onWillPop: checkIfNoteIsNotEmpty,
       child: Scaffold(
@@ -125,16 +128,12 @@ class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
                   keyboardType: TextInputType.multiline,
                   textAlign: TextAlign.left,
                   textInputAction: TextInputAction.next,
-                  cursorColor: AppColors.fabBgColor,
                   style: Theme.of(context).textTheme.headline2,
                   cursorHeight: 30,
                   cursorWidth: 1,
                   decoration: InputDecoration(
                     hintText: Strings.titleHintText,
                     hintStyle: Theme.of(context).textTheme.headline2,
-                    focusedBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
                   ),
                 ),
                 TextField(
@@ -142,7 +141,6 @@ class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
                   keyboardType: TextInputType.multiline,
                   textAlign: TextAlign.left,
                   textInputAction: TextInputAction.done,
-                  cursorColor: AppColors.fabBgColor,
                   style: Theme.of(context).textTheme.bodyText1,
                   cursorHeight: 25,
                   cursorWidth: 1,
@@ -151,9 +149,6 @@ class _NewNoteScreenState extends ConsumerState<NewNoteScreen> {
                   decoration: InputDecoration(
                     hintText: Strings.noteHintText,
                     hintStyle: Theme.of(context).textTheme.bodyText1,
-                    focusedBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
                   ),
                 ),
               ],

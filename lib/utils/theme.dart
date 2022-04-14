@@ -33,6 +33,15 @@ class NotesAppTheme {
     );
     return ThemeData(
       textTheme: lightTextTheme,
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.fabBgColor,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        focusedBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        border: InputBorder.none,
+      ),
     );
   }
 }
