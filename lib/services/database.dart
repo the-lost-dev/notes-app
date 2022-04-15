@@ -3,7 +3,7 @@ import 'package:notes_app/entities/note_model.dart';
 import 'package:notes_app/utils/utils.dart';
 
 class HiveDatabaseService {
-  Box<NoteModel>? storeData = Hive.box<NoteModel>(Strings.noteBox);
+  final Box<NoteModel>? _storeData = Hive.box<NoteModel>(Strings.noteBox);
 
   Future<void> createNewNote({String? noteTitle, String? noteContent}) async {
     final note = NoteModel(
@@ -11,7 +11,7 @@ class HiveDatabaseService {
       content: noteContent,
       dateTime: DateTime.now(),
     );
-    await storeData!.add(note);
+    await _storeData!.add(note);
   }
 }
 
