@@ -49,5 +49,5 @@ class NewNoteProvider extends ChangeNotifier {
 }
 
 final newNoteProvider = ChangeNotifierProvider((ref) {
-  return NewNoteProvider(context, database,);
+  // return NewNoteProvider(context, database,);
 });
